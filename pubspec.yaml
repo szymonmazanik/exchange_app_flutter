@@ -1,0 +1,29 @@
+name: exchange_app
+description: Currency exachnge app
+version: 1.0.0
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: 3.0.7
+  json_annotation: 3.0.0
+  rxdart: 0.23.1
+  pretty_dio_logger: 1.0.8
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: 1.7.2
+  json_serializable: 3.2.3
+
+
+flutter:
+  uses-material-design: true
+
+  # assets:
+  #  - images/a_dot_burr.jpeg
+  #  - images/a_dot_ham.jpeg
