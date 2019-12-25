@@ -9,5 +9,5 @@
   - Extension methods
   - dio 
 
-![ExchangeApp_Screenshot](http://szymonmazanik.pl/img/exchange_app_flutter_1.png) ![ExchangeApp_Screenshot](exchange_app_flutter_2.png)
+![ExchangeApp_Screenshot](http://szymonmazanik.pl/img/exchange_app_flutter_1.png) ![ExchangeApp_Screenshot](http://szymonmazanik.pl/img/exchange_app_flutter_2.png)
 http://szymonmazanik.pl/
