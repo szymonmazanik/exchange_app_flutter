@@ -5,7 +5,7 @@
 * State managment: BLoC 
 * Development:
   - Dart 2.7
-  - RxDart
+  - RxDart
   - Extension methods
   - dio 
 
