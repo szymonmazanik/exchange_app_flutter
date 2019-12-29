@@ -1,24 +1,18 @@
 import 'package:exchange_app/app/ui/widgets/animated_tabbar_widget.dart';
 import 'package:exchange_app/app/utils/app_colors.dart';
+import 'package:exchange_app/app/utils/bloc_provider.dart';
 import 'package:exchange_app/data/utils/currency_utils.dart';
 import 'package:flutter/material.dart';
 
 import '../home_bloc.dart';
 
 class CurrenciesBarWidget extends StatefulWidget {
-  final HomeBloc _bloc;
-
-  CurrenciesBarWidget(this._bloc);
-
   @override
   _CurrenciesBarWidgetState createState() => _CurrenciesBarWidgetState();
 }
 
 class _CurrenciesBarWidgetState extends State<CurrenciesBarWidget>
     with SingleTickerProviderStateMixin {
-  int _currentIndex = 0;
-  TabController tabController;
-
   static const _children = [
     {
       'symbol': usdSymbol,
@@ -45,12 +39,18 @@ class _CurrenciesBarWidgetState extends State<CurrenciesBarWidget>
       'title': eur,
     }
   ];
+  HomeBloc _bloc;
+  int _currentIndex = HomeBloc.initialBarIndex;
+  TabController tabController;
 
   @override
   void initState() {
     super.initState();
-    tabController =
-        TabController(vsync: this, initialIndex: 0, length: _children.length);
+    _bloc = BlocProvider.of<HomeBloc>(context);
+    tabController = TabController(
+        vsync: this,
+        initialIndex: HomeBloc.initialBarIndex,
+        length: _children.length);
     tabController.addListener(onTabViewChange);
   }
 
@@ -59,7 +59,7 @@ class _CurrenciesBarWidgetState extends State<CurrenciesBarWidget>
       _currentIndex = index;
       tabController.animateTo(index);
     });
-    widget._bloc.currentCurrencyBaseIndexSink.add(index);
+    _bloc.currentCurrencyBaseIndexSink.add(index);
   }
 
   onTabViewChange() {
@@ -70,7 +70,6 @@ class _CurrenciesBarWidgetState extends State<CurrenciesBarWidget>
 
   @override
   Widget build(BuildContext context) {
-//    return AnimatedTabbarWidget(widget._bloc, children: children, currentIndex: 0,padding:EdgeInsets.only(left: 4, top: 6, right: 4, bottom: 6), );
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(16)),
       child: Container(

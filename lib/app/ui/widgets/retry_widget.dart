@@ -1,14 +1,25 @@
 import 'package:exchange_app/app/utils/app_colors.dart';
 import 'package:exchange_app/app/ui/widgets/slider_wiget.dart';
+import 'package:exchange_app/app/utils/bloc_provider.dart';
+import 'package:exchange_app/app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 import '../home_bloc.dart';
 import 'app_name_widget.dart';
 
-class RetryWidget extends StatelessWidget {
-  final HomeBloc _bloc;
+class RetryWidget extends StatefulWidget {
+  @override
+  _RetryWidgetState createState() => _RetryWidgetState();
+}
 
-  RetryWidget(this._bloc);
+class _RetryWidgetState extends State<RetryWidget> {
+  HomeBloc _bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc = BlocProvider.of<HomeBloc>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +44,7 @@ class RetryWidget extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 30),
         child: Text(
           'Error',
-          style: TextStyle(
-            color: AppColors.textColor,
-            fontWeight: FontWeight.w800,
-            fontSize: 35,
-          ),
+          style: Styles.errorLabelStyle,
         ),
       );
 
@@ -45,11 +52,7 @@ class RetryWidget extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 60),
         child: Text(
           'Could not load data.',
-          style: TextStyle(
-            color: AppColors.textColor,
-            fontWeight: FontWeight.w800,
-            fontSize: 25,
-          ),
+          style: Styles.errorMessageStyle,
         ),
       );
 
@@ -57,11 +60,7 @@ class RetryWidget extends StatelessWidget {
         action: _bloc.getInitialRateInfoList,
         label: Text(
           "Slide to retry",
-          style: TextStyle(
-            color: AppColors.textColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 17,
-          ),
+          style: Styles.slideToRetryStyle,
         ),
         icon: Icon(
           Icons.attach_money,

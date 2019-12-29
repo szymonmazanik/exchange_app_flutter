@@ -1,45 +1,30 @@
 import 'package:exchange_app/app/ui/widgets/exchange_card_list.dart';
-import 'package:exchange_app/app/utils/styles.dart';
+import 'package:exchange_app/app/ui/widgets/exchange_details_widget.dart';
+
 import 'package:flutter/material.dart';
 
-import '../home_bloc.dart';
 import 'currencies_bar_widget.dart';
 
-class ResultsWidget extends StatefulWidget {
-  final HomeBloc _bloc;
-
-  ResultsWidget(this._bloc);
-
+class ResultsWidget extends StatelessWidget {
   @override
-  _ResultsWidgetState createState() => _ResultsWidgetState();
-}
-
-class _ResultsWidgetState extends State<ResultsWidget> {
-  @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: size.height * 0.07,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18),
+            child: CurrenciesBarWidget(),
+          ),
+          ExchangeCardList(),
+          ExchangeDetailsWidget(),
+        ],
+      ),
+    );
   }
-
-  @override
-  Widget build(BuildContext context) => Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: 55,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Styles.hzScreenPadding),
-              child: CurrenciesBarWidget(widget._bloc),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            ExchangeCardList(widget._bloc),
-//            HotelList(_currentCity.hotels),
-            Expanded(child: SizedBox()),
-          ],
-        ),
-      );
 }

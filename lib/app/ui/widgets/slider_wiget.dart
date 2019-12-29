@@ -1,32 +1,26 @@
-///Source: https://github.com/anirudhsharma392/Slider-Button
-///This class has the Shimmer and Vibration effects cut off
 import 'package:flutter/material.dart';
 
+///Source: https://github.com/anirudhsharma392/Slider-Button
+//////This class has the Shimmer and Vibration effects cut off
 class SliderButtonWidget extends StatefulWidget {
-  ///Sets the radius of corners of a button.
   final double radius;
 
-  ///Use it to define a height and width of widget.
   final double height;
   final double width;
   final double buttonSize;
 
-  ///Use it to define a color of widget.
   final Color backgroundColor;
   final Color baseColor;
   final Color highlightedColor;
   final Color buttonColor;
 
-  ///Change it to gave a label on a widget of your choice.
   final Text label;
 
-  ///Gives a alignment to a slidder icon.
   final Alignment alignLabel;
   final BoxShadow boxShadow;
   final Widget icon;
   final Function action;
 
-  ///Make it false if you want maintain the widget in the tree.
   final bool dismissible;
 
   SliderButtonWidget({
@@ -44,10 +38,7 @@ class SliderButtonWidget extends StatefulWidget {
     this.baseColor = Colors.black87,
     this.buttonColor = Colors.white,
     this.highlightedColor = Colors.white,
-    this.label = const Text(
-      "Slide to cancel !",
-      style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
-    ),
+    this.label = const Text("Slide to cancel !"),
     this.icon = const Icon(
       Icons.power_settings_new,
       color: Colors.red,
@@ -96,8 +87,6 @@ class _SliderButtonWidgetState extends State<SliderButtonWidget> {
             Dismissible(
               key: Key("cancel"),
               direction: DismissDirection.startToEnd,
-
-              ///gives direction of swipping in argument.
               onDismissed: (dir) async {
                 setState(() {
                   if (widget.dismissible) {

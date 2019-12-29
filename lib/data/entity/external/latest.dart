@@ -10,6 +10,4 @@ class Latest {
   Latest(this.rates, this.base);
 
   factory Latest.fromJson(Map<String, dynamic> json) => _$LatestFromJson(json);
-
-
 }

@@ -38,68 +38,18 @@ class ExchangeRateRendererWidget extends StatelessWidget {
         ),
       );
 
-//  child: Stack(
-//  overflow: Overflow.visible,
-//  alignment: Alignment.center,
-//  children: <Widget>[
-//  Container(
-//  margin: EdgeInsets.only(top: 30, left: 12, right: 12, bottom: 12),
-//  decoration: BoxDecoration(
-//  color: AppColors.primaryColor,
-//  borderRadius: BorderRadius.circular(8),
-//  boxShadow: [
-//  BoxShadow(
-//  color: Colors.black12, blurRadius: 4 * offset.abs()),
-//  BoxShadow(
-//  color: Colors.black12, blurRadius: 10 + 6 * offset.abs()),
-//  ],
-//  ),
-//  ),
-//  _buildCurrencySymbol(),
-//  _buildCurrencyName(),
-//  _buildRateValue(),
-//  ],
-//  ),
-
   Widget _buildCurrencySymbol() => Text(
-    rateInfo.symbol,
-    style: TextStyle(
-        color: AppColors.textColor, fontSize: 128, fontFamily: 'Lobster'),
-  );
+        rateInfo.symbol,
+        style: Styles.symbolCardStyle,
+      );
 
   Widget _buildRateValue() => Text(
-        '${rateInfo.value}',
-        style: TextStyle(color: AppColors.textColor, fontSize: 32),
+        rateInfo.value,
+        style: Styles.rateValueStyle,
       );
 
   Widget _buildCurrencyName() => Text(
         rateInfo.base,
-        style: TextStyle(color: AppColors.textColor, fontSize: 16),
+        style: Styles.currencyNameStyle,
       );
-
-  Widget _buildExchangeData() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        SizedBox(width: double.infinity, height: cardHeight * .57),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: Text(rateInfo.base,
-              style: Styles.cardTitle, textAlign: TextAlign.center),
-        ),
-//        Padding(
-//          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-//          child: Text(city.description, style: Styles.cardSubtitle, textAlign: TextAlign.center),
-//        ),
-//        Expanded(child: SizedBox(),),
-//        FlatButton(
-//          disabledColor: Colors.transparent,
-//          color: Colors.transparent,
-//          child: Text('Learn More'.toUpperCase(), style: Styles.cardAction),
-//          onPressed: null,
-//        ),
-//        SizedBox(height: 8)
-      ],
-    );
-  }
 }

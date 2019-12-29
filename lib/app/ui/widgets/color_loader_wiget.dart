@@ -4,7 +4,6 @@ import 'dart:math';
 
 ///Source: https://github.com/samarthagarwal/FlutterScreens/tree/master/lib/loaders
 class ColorLoaderWidget extends StatefulWidget {
-
   final Color dotOneColor;
   final Color dotTwoColor;
   final Color dotThreeColor;
@@ -12,14 +11,13 @@ class ColorLoaderWidget extends StatefulWidget {
   final DotType dotType;
   final Icon dotIcon;
 
-  ColorLoaderWidget({
-    this.dotOneColor = AppColors.primaryColor,
-    this.dotTwoColor = AppColors.primaryColor,
-    this.dotThreeColor = AppColors.primaryColor,
-    this.duration = const Duration(milliseconds: 1000),
-    this.dotType = DotType.circle,
-    this.dotIcon = const Icon(Icons.blur_on)
-  });
+  ColorLoaderWidget(
+      {this.dotOneColor = AppColors.primaryColor,
+      this.dotTwoColor = AppColors.primaryColor,
+      this.dotThreeColor = AppColors.primaryColor,
+      this.duration = const Duration(milliseconds: 1000),
+      this.dotType = DotType.circle,
+      this.dotIcon = const Icon(Icons.blur_on)});
 
   @override
   _ColorLoaderWidgetState createState() => _ColorLoaderWidgetState();
@@ -36,8 +34,7 @@ class _ColorLoaderWidgetState extends State<ColorLoaderWidget>
   void initState() {
     super.initState();
 
-    controller = AnimationController(
-        duration: widget.duration, vsync: this);
+    controller = AnimationController(duration: widget.duration, vsync: this);
 
     animation_1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
@@ -136,7 +133,6 @@ class _ColorLoaderWidgetState extends State<ColorLoaderWidget>
 
   @override
   void dispose() {
-
     controller.dispose();
     super.dispose();
   }
@@ -153,20 +149,26 @@ class Dot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Center(
-      child: type == DotType.icon ?
-      Icon(icon.icon, color: color, size: 1.3 * radius,)
+      child: type == DotType.icon
+          ? Icon(
+              icon.icon,
+              color: color,
+              size: 1.3 * radius,
+            )
           : new Transform.rotate(
-        angle: type == DotType.diamond ? pi/4 : 0.0,
-        child: Container(
-          width: radius,
-          height: radius,
-          decoration: BoxDecoration(color: color, shape: type == DotType.circle? BoxShape.circle : BoxShape.rectangle),
-        ),
-      ),
+              angle: type == DotType.diamond ? pi / 4 : 0.0,
+              child: Container(
+                width: radius,
+                height: radius,
+                decoration: BoxDecoration(
+                    color: color,
+                    shape: type == DotType.circle
+                        ? BoxShape.circle
+                        : BoxShape.rectangle),
+              ),
+            ),
     );
   }
 }
 
-enum DotType {
-  square, circle, diamond, icon
-}
+enum DotType { square, circle, diamond, icon }

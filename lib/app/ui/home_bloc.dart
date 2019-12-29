@@ -8,13 +8,16 @@ import 'package:exchange_app/data/utils/latest_extension.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HomeBloc extends BlocBase {
+  static const baseCurrencies = [usd, cad, gbp, jpy, thb, eur];
+  static const initialBarIndex = 2;
+  static const initialCardIndex = 3;
+
   final _exchangeRateApi = ExchangeRateApi.instance;
 
   final _rateInfoListSubject = BehaviorSubject<List<RateInfo>>();
-  final _currentRateInfoIndexSubject = BehaviorSubject<int>();
-  final _currentCurrencyBaseIndexSubject = BehaviorSubject.seeded(1);
-
-  static const baseCurrencies = [usd, cad, gbp, jpy, thb, eur];
+  final _currentRateInfoIndexSubject = BehaviorSubject.seeded(initialCardIndex);
+  final _currentCurrencyBaseIndexSubject =
+      BehaviorSubject.seeded(initialBarIndex);
 
   Stream get rateInfoList => _rateInfoListSubject.stream;
 
@@ -39,9 +42,8 @@ class HomeBloc extends BlocBase {
 
   _requestRateInfoList(int baseIndex) async {
     try {
-//      _rateInfoListSubject.add(null);
-      var initialLatestList = await _exchangeRateApi.getLatest(
-          baseCurrencies[baseIndex]);
+      var initialLatestList =
+          await _exchangeRateApi.getLatest(baseCurrencies[baseIndex]);
       var initialRateInfoList = initialLatestList.toRateInfoList();
       _rateInfoListSubject.add(initialRateInfoList);
     } catch (e) {
@@ -49,10 +51,13 @@ class HomeBloc extends BlocBase {
     }
   }
 
-  getInitialRateInfoList() => _requestRateInfoList(3);
+  getInitialRateInfoList() {
+    _rateInfoListSubject.add(null);
+    _requestRateInfoList(initialBarIndex);
+  }
 
   @override
-  void dispose() {
+  dispose() {
     _rateInfoListSubject.close();
     _currentRateInfoIndexSubject.close();
     _currentCurrencyBaseIndexSubject.close();

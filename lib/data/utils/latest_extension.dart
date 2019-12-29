@@ -9,7 +9,6 @@ extension LatestExtension on Latest {
     return _buildRateInfoList();
   }
 
-  ///You can easily implement more currencies here if you provide name and symbol
   List<RateInfo> _buildRateInfoList() => List<RateInfo>()
     ..add(RateInfo(
         usd,
@@ -45,14 +44,7 @@ extension LatestExtension on Latest {
         _toStringAsFixedTwoDigits(rates[thb]),
         _timesTen(rates[thb]),
         _timesHundred(rates[thb]),
-        _timesThousand(rates[thb])))
-    ..add(RateInfo(
-        eur,
-        eurSymbol,
-        _toStringAsFixedTwoDigits(rates[eur]),
-        _timesTen(rates[eur]),
-        _timesHundred(rates[eur]),
-        _timesThousand(rates[eur])));
+        _timesThousand(rates[thb])));
 
   String _timesTen(double value) => _toStringAsFixedTwoDigits(value * 10.0);
 
@@ -62,5 +54,6 @@ extension LatestExtension on Latest {
   String _timesThousand(double value) =>
       _toStringAsFixedTwoDigits(value * 1000.0);
 
-  String _toStringAsFixedTwoDigits(double value) => value.toStringAsFixed(2);
+  String _toStringAsFixedTwoDigits(double value) =>
+      value != null ? value.toStringAsFixed(2) : null;
 }

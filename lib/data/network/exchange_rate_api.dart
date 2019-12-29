@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:exchange_app/data/entity/external/latest.dart';
 import 'package:exchange_app/data/network/base_api.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ExchangeRateApi extends BaseApi {
   static final ExchangeRateApi instance = ExchangeRateApi._internal();
@@ -14,7 +15,7 @@ class ExchangeRateApi extends BaseApi {
 
   @override
   Dio configureDio() => Dio()
-//    ..interceptors.add(PrettyDioLogger()) //Uncomment for network logging
+    ..interceptors.add(PrettyDioLogger())
     ..options.connectTimeout = _timeout;
 
   Future<Latest> getLatest(String base) async {
