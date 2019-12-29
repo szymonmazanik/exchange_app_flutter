@@ -9,7 +9,7 @@
   - Extension methods
   - dio 
 
-![](http://szymonmazanik.pl/img/exchange_app_flutter_1.gif) ![](http://szymonmazanik.pl/img/exchange_app_flutter_2.gif)
+![Gif](http://szymonmazanik.pl/img/exchange_app_flutter_1.gif) ![Gif](http://szymonmazanik.pl/img/exchange_app_flutter_2.gif)
 
 
 http://szymonmazanik.pl/
